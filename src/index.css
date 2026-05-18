@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #FDFCFE;
-  color: #111827;
+  background-color: #FDFCFE; /* brandWhite */
+  color: #101828;            /* brandNavy */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-family: 'Inter', sans-serif;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+/* Custom selection color to match brand */
+::selection {
+  background-color: #FF7373;
+  color: white;
 }
