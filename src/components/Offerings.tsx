@@ -6,134 +6,126 @@ import {
   GraduationCap, 
   Coins, 
   Globe2, 
-  ArrowUpRight 
+  Plus, 
+  ArrowUpRight
 } from 'lucide-react';
 
 const Offerings: React.FC = () => {
   const offerings = [
     {
-      id: "01",
-      title: "Impact Consulting & Strategic Growth",
-      desc: "Helping organizations overcome demand–supply challenges by creating new market opportunities and designing sustainable impact models.",
-      icon: <TrendingUp size={28} />,
-      points: ["Strategy Consulting", "Market Expansion Support", "Strategic Partnerships", "Sustainable Growth Models", "Business Transformation"],
-      color: "bg-blue-50"
+      title: "Impact Consulting",
+      subtitle: "Strategic Growth",
+      desc: "Creating market opportunities and designing sustainable impact models for global growth.",
+      icon: <TrendingUp size={24} />,
+      points: ["Strategy Consulting", "Market Expansion", "Strategic Partnerships", "Growth Models"]
     },
     {
-      id: "02",
-      title: "Life Skills for Wellness",
-      desc: "Empowering individuals with essential life skills that enhance emotional well-being, resilience, communication, and personal growth.",
-      icon: <HeartPulse size={28} />,
-      points: ["Emotional Intelligence", "Mental Wellness Awareness", "AI & Financial Literacy", "Personality Enhancement", "Work-Life Balance"],
-      color: "bg-orange-50"
+      title: "Life Skills",
+      subtitle: "Wellness & Resilience",
+      desc: "Empowering individuals with essential life skills to enhance emotional well-being and growth.",
+      icon: <HeartPulse size={24} />,
+      points: ["Emotional Intelligence", "AI & Financial Literacy", "Mental Wellness", "Work-Life Balance"]
     },
     {
-      id: "03",
-      title: "Entrepreneurial Development",
-      desc: "Supporting aspiring and existing entrepreneurs with the mindset, guidance, and strategies required to build scalable ventures.",
-      icon: <Lightbulb size={28} />,
-      points: ["Entrepreneurship Bootcamps", "Startup Mentorship", "Business Model Development", "Market Access Guidance", "Scaling Strategies"],
-      color: "bg-purple-50"
+      title: "Entrepreneurship",
+      subtitle: "Development Initiatives",
+      desc: "Mindset and strategies required to build sustainable and scalable business ventures.",
+      icon: <Lightbulb size={24} />,
+      points: ["Startup Mentorship", "Bootcamps", "Market Access", "Scaling Strategies"]
     },
     {
-      id: "04",
-      title: "Mentorship Council for Youth",
-      desc: "Building a strong mentorship ecosystem of leaders and experts dedicated to guiding youth toward leadership and employability.",
-      icon: <GraduationCap size={28} />,
-      points: ["Leadership Mentoring", "Career Guidance", "Industry Expert Guidance", "Skill Enhancement", "Executive & Founder Coaching"],
-      color: "bg-green-50"
+      title: "Mentorship Council",
+      subtitle: "Youth Development",
+      desc: "Guiding youth toward leadership, employability, and executive-level success.",
+      icon: <GraduationCap size={24} />,
+      points: ["Leadership Mentoring", "Career Guidance", "Expert Networking", "Founder Coaching"]
     },
     {
-      id: "05",
-      title: "Empowering Women for Freedom",
-      desc: "Creating inclusive opportunities for women through entrepreneurship support, financial literacy, and leadership development.",
-      icon: <Coins size={28} />,
-      points: ["Women Entrepreneurship", "Financial Literacy", "Leadership Workshops", "Networking Circles", "Business Enablement"],
-      color: "bg-rose-50"
+      title: "Empowering Women",
+      subtitle: "Financial Freedom",
+      desc: "Creating inclusive opportunities through leadership and business enablement initiatives.",
+      icon: <Coins size={24} />,
+      points: ["Women Entrepreneurship", "Money Management", "Growth Circles", "Leadership Workshops"]
     },
     {
-      id: "06",
-      title: "Global Scaling & Partnerships",
-      desc: "Helping businesses expand globally through collaboration, investor access, strategic alliances, and growth acceleration.",
-      icon: <Globe2 size={28} />,
-      points: ["Strategic Alliances", "Global Market Access", "Investor Networking", "Cross-Border Collaborations", "Growth Acceleration"],
-      color: "bg-amber-50"
+      title: "Global Scaling",
+      subtitle: "Strategic Alliances",
+      desc: "Helping businesses expand through collaboration and investor access.",
+      icon: <Globe2 size={24} />,
+      points: ["Global Market Access", "Investor Networking", "Cross-Border Alliances", "Growth Acceleration"]
     }
   ];
 
   return (
-    <section id="offerings" className="py-24 md:py-32 bg-[#FDFCFE]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="offerings" className="bg-[#FDFCFE] py-16 md:py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* SECTION HEADER */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF7373]/10 border border-[#FF7373]/20 rounded-full mb-4">
-              <span className="text-[#FF7373] text-xs font-bold uppercase tracking-[0.2em]">Our Services</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#101828]">
-              Our Core <span className="text-[#FF7373]">Offerings</span>
-            </h2>
+        <div className="mb-12 md:mb-20 text-center md:text-left">
+          <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
+            <div className="h-[2px] w-8 md:w-12 bg-[#FF7373]"></div>
+            <span className="text-[#101828]/50 text-[10px] md:text-xs font-black uppercase tracking-[0.3em]">What We Provide</span>
           </div>
-          <p className="text-gray-500 font-medium max-w-sm">
-            Tailored strategies and ecosystems designed to drive measurable growth across multiple sectors.
-          </p>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#101828] tracking-tighter">
+            Core <span className="text-[#FF7373]">Offerings.</span>
+          </h2>
         </div>
 
-        {/* OFFERINGS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* INTERACTIVE GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {offerings.map((item, index) => (
             <div 
               key={index}
-              className="group relative bg-white border border-gray-100 p-8 rounded-[32px] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:-translate-y-2 flex flex-col"
+              className="group relative min-h-[360px] md:h-[400px] bg-white border border-[#EFE1D1] rounded-[28px] md:rounded-[32px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-[#101828]/5 cursor-pointer"
             >
-              {/* TOP SECTION: Icon & ID */}
-              <div className="flex justify-between items-start mb-8">
-                <div className="w-14 h-14 bg-[#101828] text-[#FF7373] rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-[10deg] shadow-lg">
-                  {item.icon}
+              {/* TOP: Static Content */}
+              <div className="p-6 md:p-8 h-full flex flex-col">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE1D1] text-[#101828] rounded-xl md:rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#101828] group-hover:text-white transition-all duration-500 group-hover:rotate-6">
+                  {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
                 </div>
-                <span className="text-4xl font-black text-gray-100 group-hover:text-[#EFE1D1] transition-colors">
-                  {item.id}
-                </span>
+                
+                <p className="text-xl md:text-2xl font-black text-[#FF7373] mb-2">
+                  {item.subtitle}
+                </p>
+                <h3 className="text-lg md:text-xl font-black text-[#101828] leading-tight mb-4 group-hover:text-[#FF7373] transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-base md:text-lg font-bold text-gray-400 leading-relaxed">
+                  {item.desc}
+                </p>
+
+                {/* VISUAL DECOR: Plus sign at corner */}
+                <div className="mt-auto flex justify-end">
+                   <div className="w-8 h-8 rounded-full border border-[#EFE1D1] flex items-center justify-center group-hover:bg-[#FF7373] group-hover:border-[#FF7373] transition-all">
+                      <Plus size={16} className="text-[#101828] group-hover:text-white group-hover:rotate-90 transition-all duration-500" />
+                   </div>
+                </div>
               </div>
 
-              {/* MIDDLE SECTION: Content */}
-              <h3 className="text-2xl font-bold text-[#101828] mb-4 leading-tight group-hover:text-[#FF7373] transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-gray-500 leading-relaxed mb-8 flex-grow">
-                {item.desc}
-              </p>
-
-              {/* BOTTOM SECTION: Key Areas List */}
-              <div className="pt-6 border-t border-gray-50">
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Key Focus Areas</p>
-                <ul className="space-y-2">
+              {/* SLIDE-UP DETAIL OVERLAY (Works on Hover and Focus) */}
+              <div className="absolute inset-0 bg-[#101828] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out p-6 md:p-8 flex flex-col justify-center">
+                <p className="text-[#FF7373] font-black uppercase tracking-widest text-[10px] md:text-xs mb-6">Key Focus Areas</p>
+                <div className="space-y-3 md:space-y-4">
                   {item.points.map((point, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm font-bold text-[#101828]/80">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#FF7373]" />
-                      {point}
-                    </li>
+                    <div 
+                      key={i} 
+                      className="flex items-center gap-3 md:gap-4 text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity delay-200 duration-500"
+                    >
+                      <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-[#FF7373]" />
+                      <span className="text-sm md:text-base leading-tight">{point}</span>
+                    </div>
                   ))}
-                </ul>
-              </div>
-
-              {/* Subtle Arrow Decor */}
-              <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                <ArrowUpRight className="text-[#FF7373]" size={20} />
+                </div>
+                
+                <div className="mt-8 md:mt-10 pt-4 border-t border-white/10">
+                  <button className="text-white font-black uppercase tracking-widest text-[10px] flex items-center gap-2 hover:text-[#FF7373] transition-colors group/btn">
+                    View full details 
+                    <ArrowUpRight size={14} className="group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* FOOTER CALL TO ACTION */}
-        <div className="mt-20 p-1 bg-[#EFE1D1] rounded-[40px]">
-            <div className="bg-[#101828] rounded-[36px] py-12 px-8 text-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Ready to scale your impact?</h3>
-                <button className="px-10 py-4 bg-[#FF7373] text-white font-bold rounded-full hover:scale-105 transition-all shadow-xl">
-                    Get Started Today
-                </button>
-            </div>
         </div>
 
       </div>

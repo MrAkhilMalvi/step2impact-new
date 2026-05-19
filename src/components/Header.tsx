@@ -1,107 +1,105 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react'; // Optional: Install lucide-react for better icons
+import React, { useState, useEffect } from "react";
+import { ChevronRight, Menu, X } from "lucide-react";
 
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Effect to handle shadow/blur on scroll
+  // FIX 1: Prevent background scrolling when menu is open
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
 
-  const navItems = [
-    { name: 'Who We Are', href: '#about' },
-    { name: 'Our Offerings', href: '#offerings' },
-    { name: 'Impact Philosophy', href: '#impact' },
-    { name: 'Our Leadership', href: '#founders' },
+  const navLinks = [
+    { name: "About", link: "#about" },
+    { name: "Impact", link: "#impact" },
+    { name: "Offerings", link: "#offerings" },
+    { name: "Leadership", link: "#leadership" },
+    { name: "Contact Us", link: "#contact" },
   ];
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-[100] transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? 'bg-[#EFE1D1]/80 backdrop-blur-lg border-b border-[#101828]/5 py-3' 
-          : 'bg-[#EFE1D1] py-5'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
-        
-        {/* LEFT SIDE: Logo */}
-        <div className="flex items-center gap-3 cursor-pointer group">
-          <div className="w-10 h-10 bg-[#101828] rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:rotate-6 shadow-md">
-            <span className="text-[#FF7373] font-bold text-xl">S</span>
+    <>
+      <header className="fixed top-0 left-0 z-[100] w-full border-b border-gray-100 bg-white py-4 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          
+          {/* LOGO: Scaled down to prevent crashing into text */}
+          <div className="flex items-center relative z-[120]">
+            <img
+              src="/logos/step2impactlogo.png"
+              alt="Step2Impact Logo"
+              className="h-7 md:h-10 w-auto object-contain scale-[1.5] md:scale-[2.5] origin-left transition-transform"
+            />
           </div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-lg md:text-xl tracking-tight text-[#101828] leading-none">
-              Step2Impact
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#101828]/60">
-              Global Network
-            </span>
+
+          {/* DESKTOP MENU */}
+          <nav className="hidden lg:flex items-center gap-10">
+            {navLinks.map((item) => (
+              <a key={item.name} href={item.link} className="text-sm font-bold text-[#101828]/70 hover:text-[#FF7373] transition-colors">
+                {item.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* DESKTOP ACTIONS */}
+          <div className="hidden md:flex items-center gap-4">
+            <button className="px-5 py-2 border border-gray-200 rounded-full text-sm font-bold">Join Network</button>
+            <button className="px-5 py-2 bg-[#FF7373] text-white rounded-full text-sm font-bold flex items-center gap-2">
+              Get in Touch <ChevronRight size={14} />
+            </button>
           </div>
-        </div>
 
-        {/* CENTER: Navigation Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-10">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-[14px] font-bold text-[#101828]/70 hover:text-[#FF7373] transition-colors duration-200 uppercase tracking-wide"
-            >
-              {item.name}
-            </a>
-          ))}
-        </nav>
-
-        {/* RIGHT SIDE: Action Button */}
-        <div className="flex items-center gap-4">
-          <a 
-            href="#contact"
-            className="hidden sm:inline-block px-7 py-2.5 bg-[#101828] text-white text-[13px] font-bold rounded-full hover:bg-[#FF7373] hover:scale-105 transition-all active:scale-95 shadow-lg shadow-black/10"
-          >
-            Contact Us
-          </a>
-
-          {/* Mobile Menu Toggle */}
+          {/* MOBILE TOGGLE: Z-index 120 keeps it above EVERYTHING */}
           <button 
-            className="md:hidden p-2 text-[#101828]"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-[#101828] relative z-[120] border border-gray-200 rounded-lg"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </div>
 
-      {/* MOBILE MENU DROPDOWN */}
-      <div className={`
-        absolute top-full left-0 w-full bg-[#EFE1D1] border-b border-black/5 flex flex-col items-center gap-6 py-10 transition-all duration-300 md:hidden
-        ${isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-5 invisible pointer-events-none'}
-      `}>
-        {navItems.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="text-lg font-bold text-[#101828]"
-          >
-            {item.name}
-          </a>
-        ))}
-        <a 
-          href="#contact"
-          className="px-8 py-3 bg-[#101828] text-white font-bold rounded-full"
-          onClick={() => setIsMobileMenuOpen(false)}
+        {/* MOBILE MENU OVERLAY: FIXING THE OVERLAP */}
+        <div 
+          className={`fixed inset-0 bg-white z-[110] transition-all duration-500 ease-in-out ${
+            isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+          }`}
         >
-          Contact Us
-        </a>
-      </div>
-    </header>
+          {/* Main content of mobile menu */}
+          <div className="flex flex-col h-full pt-32 px-8 pb-10 bg-white">
+            <nav className="flex flex-col gap-6">
+              {navLinks.map((item, idx) => (
+                <a
+                  key={item.name}
+                  href={item.link}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-4xl font-black text-[#101828] tracking-tighter transition-all duration-500 ${
+                    isOpen ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${idx * 50}ms` }}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+
+            <div className="mt-12 space-y-4">
+              <button className="w-full py-5 bg-[#101828] text-white rounded-2xl font-black uppercase tracking-widest text-xs">
+                Get in Touch
+              </button>
+              <button className="w-full py-5 border-2 border-gray-100 text-[#101828] rounded-2xl font-black uppercase tracking-widest text-xs">
+                Join Network
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      {/* HEADER SPACER: Important so section content doesn't hide behind header */}
+      <div className="h-[68px] md:h-[80px]"></div>
+    </>
   );
 };
 

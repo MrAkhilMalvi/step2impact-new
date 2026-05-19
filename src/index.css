@@ -1,18 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #FDFCFE; /* brandWhite */
-  color: #101828;            /* brandNavy */
+  background-color: #fdfcfe; /* brandWhite */
+  color: #101828; /* brandNavy */
   -webkit-font-smoothing: antialiased;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* Custom selection color to match brand */
 ::selection {
-  background-color: #FF7373;
+  background-color: #ff7373;
   color: white;
+}
+
+@keyframes wave-move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50px) translateY(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-wave-slow {
+  animation: wave-move 15s ease-in-out infinite;
+}
+.animate-wave-fast {
+  animation: wave-move 10s ease-in-out infinite reverse;
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+.animate-dash {
+  animation: dash 60s linear infinite;
 }
