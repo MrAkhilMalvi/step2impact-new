@@ -46,7 +46,7 @@ const Header: React.FC = () => {
             <img
               src="/logos/step2impactlogo.png"
               alt="Step2Impact"
-              className="h-7 sm:h-9 w-auto object-contain scale-[1.8] sm:scale-[3] origin-left transition-transform"
+              className="h-7 sm:h-9 w-auto object-contain mt-3 scale-[2.7] sm:scale-[3] origin-left transition-transform"
             />
           </a>
 
