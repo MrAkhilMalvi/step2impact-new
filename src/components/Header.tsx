@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { ChevronRight, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // FIX 1: Prevent background scrolling when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
   const navLinks = [
@@ -18,87 +22,115 @@ const Header: React.FC = () => {
     { name: "Impact", link: "#impact" },
     { name: "Offerings", link: "#offerings" },
     { name: "Leadership", link: "#leadership" },
-    { name: "Contact Us", link: "#contact" },
+    { name: "Contact", link: "#contact" },
   ];
+
+  const handleClick = (link: string) => {
+    setIsOpen(false);
+    const el = document.querySelector(link);
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-[100] w-full border-b border-gray-100 bg-white py-4 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          
-          {/* LOGO: Scaled down to prevent crashing into text */}
-          <div className="flex items-center relative z-[120]">
+      <header
+        className={`fixed  left-0 right-0 z-[100] transition-all duration-500 ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-brandBorder/50"
+            : "bg-white/80 backdrop-blur-sm border-b border-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14 sm:h-16">
+          {/* Logo */}
+          <a href="#home" className="flex items-center shrink-0">
             <img
               src="/logos/step2impactlogo.png"
-              alt="Step2Impact Logo"
-              className="h-7 md:h-10 w-auto object-contain scale-[1.5] md:scale-[2.5] origin-left transition-transform"
+              alt="Step2Impact"
+              className="h-7 sm:h-9 w-auto object-contain scale-[1.8] sm:scale-[3] origin-left transition-transform"
             />
-          </div>
+          </a>
 
-          {/* DESKTOP MENU */}
-          <nav className="hidden lg:flex items-center gap-10">
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((item) => (
-              <a key={item.name} href={item.link} className="text-sm font-bold text-[#101828]/70 hover:text-[#FF7373] transition-colors">
+              <a
+                key={item.name}
+                href={item.link}
+                onClick={(e) => { e.preventDefault(); handleClick(item.link); }}
+                className="px-3 xl:px-4 py-2 text-sm font-bold text-brandMuted hover:text-brandBlue rounded-lg hover:bg-brandBlue/5 transition-all"
+              >
                 {item.name}
               </a>
             ))}
           </nav>
 
-          {/* DESKTOP ACTIONS */}
-          <div className="hidden md:flex items-center gap-4">
-            <button className="px-5 py-2 border border-gray-200 rounded-full text-sm font-bold">Join Network</button>
-            <button className="px-5 py-2 bg-[#FF7373] text-white rounded-full text-sm font-bold flex items-center gap-2">
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-3">
+            <button className="px-4 py-2 text-sm font-medium text-brandNavy border border-brandBorder rounded-lg hover:border-brandBlue/30 hover:text-brandBlue transition-all">
+              Join Network
+            </button>
+            <button className="px-5 py-2 text-sm font-semibold text-white bg-brandBlue rounded-lg hover:bg-brandDeepBlue transition-all shadow-lg shadow-brandBlue/20 flex items-center gap-2">
               Get in Touch <ChevronRight size={14} />
             </button>
           </div>
 
-          {/* MOBILE TOGGLE: Z-index 120 keeps it above EVERYTHING */}
-          <button 
-            className="lg:hidden p-2 text-[#101828] relative z-[120] border border-gray-200 rounded-lg"
+          {/* Mobile Toggle */}
+          <button
+            className="lg:hidden p-2 text-brandNavy border border-brandBorder rounded-lg"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-
-        {/* MOBILE MENU OVERLAY: FIXING THE OVERLAP */}
-        <div 
-          className={`fixed inset-0 bg-white z-[110] transition-all duration-500 ease-in-out ${
-            isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-          }`}
-        >
-          {/* Main content of mobile menu */}
-          <div className="flex flex-col h-full pt-32 px-8 pb-10 bg-white">
-            <nav className="flex flex-col gap-6">
-              {navLinks.map((item, idx) => (
-                <a
-                  key={item.name}
-                  href={item.link}
-                  onClick={() => setIsOpen(false)}
-                  className={`text-4xl font-black text-[#101828] tracking-tighter transition-all duration-500 ${
-                    isOpen ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
-                  }`}
-                  style={{ transitionDelay: `${idx * 50}ms` }}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-
-            <div className="mt-12 space-y-4">
-              <button className="w-full py-5 bg-[#101828] text-white rounded-2xl font-black uppercase tracking-widest text-xs">
-                Get in Touch
-              </button>
-              <button className="w-full py-5 border-2 border-gray-100 text-[#101828] rounded-2xl font-black uppercase tracking-widest text-xs">
-                Join Network
-              </button>
-            </div>
-          </div>
-        </div>
       </header>
-      
-      {/* HEADER SPACER: Important so section content doesn't hide behind header */}
-      <div className="h-[68px] md:h-[80px]"></div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[150]"
+          >
+            <div className="absolute inset-0 bg-black/30" onClick={() => setIsOpen(false)} />
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="absolute top-[calc(36px+56px)] sm:top-[calc(40px+64px)] left-0 right-0 mx-4 sm:mx-6 bg-white rounded-2xl shadow-2xl border border-brandBorder overflow-hidden"
+            >
+              <div className="p-5 sm:p-6 max-h-[70vh] overflow-y-auto">
+                <nav className="flex flex-col gap-1">
+                  {navLinks.map((item, idx) => (
+                    <motion.a
+                      key={item.name}
+                      href={item.link}
+                      onClick={(e) => { e.preventDefault(); handleClick(item.link); }}
+                      initial={{ x: -16, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: idx * 0.05 }}
+                      className="px-4 py-3 text-lg font-semibold text-brandNavy hover:text-brandBlue rounded-xl hover:bg-brandLight transition-all"
+                    >
+                      {item.name}
+                    </motion.a>
+                  ))}
+                </nav>
+                <div className="mt-5 pt-5 border-t border-brandBorder space-y-3">
+                  <button className="w-full py-3.5 bg-brandBlue text-white rounded-xl font-semibold text-sm hover:bg-brandDeepBlue transition-all shadow-lg shadow-brandBlue/20">
+                    Get in Touch
+                  </button>
+                  <button className="w-full py-3.5 border-2 border-brandBorder text-brandNavy rounded-xl font-semibold text-sm hover:border-brandBlue hover:text-brandBlue transition-all">
+                    Join Network
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

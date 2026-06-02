@@ -1,147 +1,195 @@
 import React from "react";
-import { Lightbulb, Users, Heart, Rocket, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Lightbulb, Users, Heart, Rocket } from "lucide-react";
+
+interface Pillar {
+  icon: React.ReactNode;
+  name: string;
+  desc: string;
+}
 
 const AboutUs: React.FC = () => {
-  const pillars = [
-    {
-      icon: <Lightbulb size={20} />,
-      name: "Innovation",
-      desc: "Transforming intent into disruptive action.",
+  const pillars: Pillar[] = [
+    { 
+      icon: <Lightbulb className="w-5 h-5" />, 
+      name: "Innovation", 
+      desc: "Transforming strategic intent into highly disruptive, scalable action." 
     },
-    {
-      icon: <Users size={20} />,
-      name: "Mentorship",
-      desc: "Guiding leaders through expert ecosystems.",
+    { 
+      icon: <Users className="w-5 h-5" />, 
+      name: "Mentorship", 
+      desc: "Guiding future-ready leaders through high-impact, expert ecosystems." 
     },
-    {
-      icon: <Heart size={20} />,
-      name: "Wellness",
-      desc: "Holistic growth for people and teams.",
+    { 
+      icon: <Heart className="w-5 h-5" />, 
+      name: "Wellness", 
+      desc: "Cultivating sustainable and holistic growth environments for teams." 
     },
-    {
-      icon: <Rocket size={20} />,
-      name: "Entrepreneurship",
-      desc: "Building sustainable, scalable ventures.",
+    { 
+      icon: <Rocket className="w-5 h-5" />, 
+      name: "Entrepreneurship", 
+      desc: "Co-building enduring, institutional-grade global ventures." 
     },
   ];
 
-  const steps = [
-    { label: "Ecosystem", val: "Driven" },
-    { label: "Innovation", val: "Led" },
-    { label: "Purpose", val: "Focused" },
-    { label: "Global", val: "Network" },
+  const roadmapSteps = [
+    { label: "Ecosystem", val: "Driven", num: "01" },
+    { label: "Innovation", val: "Led", num: "02" },
+    { label: "Purpose", val: "Focused", num: "03" },
+    { label: "Global", val: "Network", num: "04" },
   ];
 
   return (
-    <section id="about" className="relative scroll-mt-20 overflow-hidden bg-[#FDFCFE] py-16 md:py-24 lg:py-32">
-      
-      {/* --- SUBTLE BACKGROUND DECOR --- */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-30">
-        <div className="absolute -left-20 top-20 w-64 h-64 md:w-96 md:h-96 bg-[#EFE1D1]/40 rounded-full blur-[80px] md:blur-[100px]" />
-        <div className="absolute -right-20 bottom-20 w-64 h-64 md:w-96 md:h-96 bg-[#FF7373]/5 rounded-full blur-[80px] md:blur-[100px]" />
-      </div>
+    <section id="about" className="relative overflow-hidden bg-slate-50/50 py-20 lg:py-32">
+      {/* Decorative Grid Background for a technical/corporate feel */}
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20 xl:gap-24">
+      {/* Subtle radial glows */}
+      <div className="absolute top-1/4 left-0 -translate-x-1/2 w-96 h-96 rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 translate-x-1/2 w-96 h-96 rounded-full bg-red-500/5 blur-[120px] pointer-events-none" />
+
+      {/* Top clean separator line */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 xl:gap-20 items-center">
           
-          {/* --- LEFT: CORPORATE IMAGE STACK --- */}
-          <div className="relative group order-2 lg:order-1">
-            {/* Decorative border - hidden on smallest screens to save space */}
-            <div className="hidden sm:block absolute -inset-3 md:-inset-4 border border-[#EFE1D1] rounded-[32px] md:rounded-[48px] -z-10 group-hover:border-[#FF7373]/20 transition-colors duration-500"></div>
-            
-            <div className="relative rounded-[24px] md:rounded-[40px] overflow-hidden shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
-                alt="Collaboration"
-                className="aspect-[4/3] sm:aspect-[4/5] lg:aspect-square w-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#101828]/40 to-transparent"></div>
+          {/* LEFT - Enhanced Visual Collage & Metrics */}
+          <div className="lg:col-span-5 relative order-2 lg:order-1">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Floating Impact Badge - Scaled for mobile */}
-              <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-white/95 backdrop-blur-md px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border border-white/50 shadow-xl">
-                <p className="text-[#FF7373] font-black text-[10px] md:text-xs uppercase tracking-widest">Est. Impact</p>
-                <p className="text-[#101828] font-black text-sm md:text-xl">Global Initiative</p>
+              {/* Main Image Container */}
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200/80 shadow-2xl bg-white p-2">
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000"
+                  alt="Enterprise Collaboration"
+                  className="rounded-xl aspect-[5/5] w-full object-cover filter contrast-[1.02] brightness-[0.98]"
+                />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
               </div>
+
+
+
             </div>
           </div>
 
-          {/* --- RIGHT: CONTENT & PILLARS --- */}
-          <div className="relative order-1 lg:order-2">
-            <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
-              <div className="h-[2px] w-8 md:w-12 bg-[#FF7373]"></div>
-              <span className="text-[#101828]/50 text-[10px] md:text-xs font-black uppercase tracking-[0.3em]">Who We Are</span>
+          {/* RIGHT - Deep Strategic Content */}
+          <div className="lg:col-span-7 order-1 lg:order-2">
+            {/* Tag */}
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-5"
+            >
+              <span className="h-px w-8 bg-[#B91C1C]" />
+              <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#B91C1C]">Who We Are</span>
+            </motion.div>
+
+            {/* Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0F172A] tracking-tight leading-[1.15] mb-6"
+            >
+              Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B91C1C] to-[#1E40AF]">meaningful</span> <br className="hidden sm:block" /> transformation.
+            </motion.h2>
+
+            {/* Paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base md:text-lg text-slate-600 leading-relaxed mb-5 max-w-2xl"
+            >
+              Step2Impact Global Network is a purpose-driven ecosystem operating at the intersection of leadership, structured growth, and systemic impact. We catalyze transformative journeys for institutions and pioneers.
+            </motion.p>
+
+            {/* Pillars Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {pillars.map((pillar, i) => (
+                <motion.div
+                  key={pillar.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.15 * i }}
+                  className="group relative p-5 bg-white border border-slate-200/80 rounded-xl hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                >
+                  {/* Subtle Accent Left Border on Hover */}
+                  <div className="absolute left-0 top-4 bottom-4 w-[3px] bg-gradient-to-b from-[#1E40AF] to-[#B91C1C] opacity-0 group-hover:opacity-100 transition-opacity rounded-r" />
+
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center text-[#0F172A] group-hover:bg-[#1E40AF] group-hover:text-white transition-all duration-300">
+                        {pillar.icon}
+                      </div>
+                      <h4 className="text-base font-bold text-[#0F172A] tracking-tight group-hover:text-[#1E40AF] transition-colors duration-200">
+                        {pillar.name}
+                      </h4>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed pl-1">
+                      {pillar.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        {/* STRATEGIC ROADMAP - Connected Timeline Concept */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-14 lg:mt-14"
+        >
+          <div className="text-center mb-12 sm:mb-16">
+            <span className="text-[11px] uppercase tracking-[0.25em] font-extrabold text-[#1E40AF] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">
+              Our Strategic Framework
+            </span>
+          </div>
+
+          <div className="relative">
+            {/* Horizontal timeline connector path for larger screens */}
+            <div className="hidden md:block absolute top-[44px] left-[12.5%] right-[12.5%] h-[2px] bg-slate-200 -z-10">
+              <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-blue-500 via-red-400 to-transparent" />
             </div>
 
-            <h2 className="mb-6 md:mb-8 text-4xl sm:text-5xl md:text-[60px] font-black leading-[1.1] md:leading-[0.95] text-[#101828] tracking-tighter">
-              Built for <span className="text-[#FF7373]">meaningful</span> <br className="hidden sm:block" /> transformation.
-            </h2>
-
-            <p className="text-lg md:text-xl font-bold leading-relaxed text-[#101828]/70 mb-8 md:mb-10 max-w-xl">
-              Step2Impact Global Network is a purpose-driven ecosystem dedicated to enabling transformation through innovation.
-            </p>
-
-            {/* PILLARS GRID */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {pillars.map((pillar) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+              {roadmapSteps.map((step, index) => (
                 <div
-                  key={pillar.name}
-                  className="group flex flex-col p-5 md:p-6 bg-white border border-[#EFE1D1] rounded-[20px] md:rounded-[24px] hover:border-[#FF7373] hover:shadow-xl hover:shadow-[#101828]/5 transition-all duration-300"
+                  key={index}
+                  className="group relative flex flex-col items-center text-center p-6 bg-white border border-slate-200/80 rounded-2xl transition-all duration-300 hover:border-blue-500/30 hover:shadow-xl"
                 >
-                  <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-[#EFE1D1]/40 text-[#101828] group-hover:bg-[#101828] group-hover:text-white transition-all mb-4">
-                    {pillar.icon}
+                  {/* Visual Node Dot on the connector line (Desktop only) */}
+                  <div className="hidden md:flex absolute -top-[14px] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-slate-100 border-4 border-white shadow-sm items-center justify-center group-hover:border-[#1E40AF] group-hover:scale-110 transition-all duration-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover:bg-[#1E40AF]" />
                   </div>
-                  <div>
-                    <h4 className="text-base md:text-lg font-black text-[#101828] mb-1">{pillar.name}</h4>
-                    <p className="text-xs md:text-sm font-medium text-gray-500 leading-snug">{pillar.desc}</p>
-                  </div>
+
+                  {/* Step ID badge */}
+                  <span className="bg-[#B91C1C] text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-4 shadow-sm">
+                    Step {step.num}
+                  </span>
+
+                  {/* Text Details */}
+                  <h4 className="text-xl font-bold text-[#0F172A] uppercase tracking-tight italic mb-1 group-hover:text-[#B91C1C] transition-colors">
+                    {step.label}
+                  </h4>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                    {step.val}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-
-        {/* --- BOTTOM SECTION: THE IMPACT STEPS --- */}
-        <div className="mt-20 md:mt-24 lg:mt-32 relative">
-          <div className="text-center mb-10 md:mb-14">
-            <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-[#101828]/30">Our Strategic Roadmap</p>
-          </div>
-
-          <div className="flex flex-col md:flex-row items-stretch justify-between gap-6 md:gap-4">
-            {steps.map((step, index) => (
-              <React.Fragment key={index}>
-                <div className="flex-1 group relative">
-                  <div className="h-full relative z-10 p-6 md:p-8 bg-white border border-[#EFE1D1] rounded-[24px] md:rounded-[32px] text-center transition-all duration-300 hover:border-[#FF7373] hover:shadow-lg">
-                    {/* Step Badge */}
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FF7373] text-white text-[9px] md:text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest whitespace-nowrap">
-                      Step 0{index + 1}
-                    </span>
-                    
-                    <h4 className="text-xl md:text-2xl font-black text-[#101828] uppercase tracking-tighter italic mb-1 group-hover:text-[#FF7373] transition-colors">
-                      {step.label}
-                    </h4>
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
-                      {step.val}
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Arrow Icon - only visible on Desktop (md+) */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:flex items-center text-[#EFE1D1] self-center">
-                    <ChevronRight size={24} className="lg:w-8 lg:h-8" strokeWidth={3} />
-                  </div>
-                )}
-
-                {/* Mobile Connector Line - visible only on Mobile */}
-                {index < steps.length - 1 && (
-                  <div className="md:hidden flex justify-center h-6">
-                    <div className="w-[2px] bg-[#EFE1D1]"></div>
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

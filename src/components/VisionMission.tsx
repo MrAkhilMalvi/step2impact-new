@@ -1,103 +1,108 @@
-import React from 'react';
-import { Target, CheckCircle2, Heart, Rocket, Globe, ShieldCheck } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Target, CheckCircle2, Heart, Rocket, Globe, ShieldCheck } from "lucide-react";
 
 const VisionMission: React.FC = () => {
-  const missionItems = [
-    {
-      title: "Individual Empowerment",
-      desc: "Empowering individuals through wellness, life skills, and mentorship.",
-      icon: <Heart className="text-[#FF7373]" size={24} />
-    },
-    {
-      title: "Entrepreneurial Growth",
-      desc: "Supporting entrepreneurs with growth-focused development initiatives.",
-      icon: <Rocket className="text-[#FF7373]" size={24} />
-    },
-    {
-      title: "Women’s Leadership",
-      desc: "Enabling women towards financial freedom and leadership roles.",
-      icon: <ShieldCheck className="text-[#FF7373]" size={24} />
-    },
-    {
-      title: "Global Scaling",
-      desc: "Helping businesses scale globally through strategic partnerships and market access.",
-      icon: <Globe className="text-[#FF7373]" size={24} />
-    },
-    {
-      title: "Sustainable Execution",
-      desc: "Creating measurable social and economic impact through sustainable execution.",
-      icon: <CheckCircle2 className="text-[#FF7373]" size={24} />
-    }
+  const items = [
+    { title: "Individual Empowerment", desc: "Empowering individuals through wellness, life skills, and mentorship.", icon: <Heart size={20} /> },
+    { title: "Entrepreneurial Growth", desc: "Supporting entrepreneurs with growth-focused initiatives.", icon: <Rocket size={20} /> },
+    { title: "Women\u2019s Leadership", desc: "Enabling women towards financial freedom and leadership roles.", icon: <ShieldCheck size={20} /> },
+    { title: "Global Scaling", desc: "Helping businesses scale globally through strategic partnerships.", icon: <Globe size={20} /> },
+    { title: "Sustainable Execution", desc: "Creating measurable social and economic impact.", icon: <CheckCircle2 size={20} /> },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-[#EFE1D1]/30 overflow-hidden">
+    <section className="relative overflow-hidden bg-[#F8FAFC] section-padding">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* VISION BLOCK - Responsive Padding & Font Sizes */}
-        <div className="relative overflow-hidden bg-[#101828] rounded-3xl md:rounded-[40px] p-8 sm:p-12 md:p-20 mb-16 md:mb-24 shadow-2xl">
-          {/* Background Decorative Circles - Hidden on extra small screens for performance, blurred on others */}
-          <div className="absolute top-[-10%] right-[-5%] w-48 h-48 md:w-64 md:h-64 bg-[#FF7373]/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-[-10%] left-[-5%] w-48 h-48 md:w-64 md:h-64 bg-white/5 rounded-full blur-3xl"></div>
+        {/* Vision — Full-width manifesto block */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative overflow-hidden bg-[#0F172A] rounded-2xl sm:rounded-3xl md:rounded-[40px] p-8 sm:p-12 md:p-16 lg:p-20 mb-20 md:mb-28 shadow-2xl"
+        >
+          {/* Glow orbs */}
+          <div className="absolute -top-24 -right-24 w-48 h-48 md:w-72 md:h-72 bg-[#B91C1C]/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-48 h-48 md:w-72 md:h-72 bg-[#1E40AF]/10 rounded-full blur-3xl" />
 
-          <div className="relative z-10 max-w-4xl">
-            <div className="inline-flex items-center gap-2 mb-4 md:mb-6">
-              <Target className="text-[#FF7373] hidden md:block" size={20} />
-              <Target className="text-[#FF7373] block md:hidden" size={18} />
-              <span className="text-[#FF7373] font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm">
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-5 sm:mb-8">
+              <Target size={20} className="text-[#B91C1C]" />
+              <span className="text-[#B91C1C] font-semibold uppercase tracking-[0.22em] text-[10px] sm:text-xs">
                 Our Vision
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight md:leading-tight">
-              To build a <span className="text-[#FF7373]">globally connected</span> impact ecosystem that empowers individuals, entrepreneurs, and communities to create <span className="italic font-medium text-white/80">sustainable growth</span> and measurable transformation.
+            <h2 className="text-xl sm:text-2xl md:text-[38px] lg:text-[44px] font-bold text-white leading-[1.2] sm:leading-[1.15] tracking-tight max-w-5xl">
+              To build a <span className="text-[#DC2626]">globally connected</span> impact ecosystem that empowers individuals, entrepreneurs, and communities to create{" "}
+              <span className="italic font-normal text-white/70">sustainable growth</span> and measurable transformation.
             </h2>
           </div>
-        </div>
+        </motion.div>
 
-        {/* MISSION BLOCK - Responsive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        {/* Mission — Offset left/right layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
-          {/* Left Column: Mission Title - Sticky only on Large Screens */}
-          <div className="lg:col-span-4 lg:sticky lg:top-10">
-            <div className="inline-block px-4 py-1.5 bg-[#101828]/5 border border-[#101828]/10 rounded-full mb-4 md:mb-6">
-              <span className="text-[#101828] text-xs md:text-sm font-bold uppercase tracking-widest">
-                Our Mission
-              </span>
-            </div>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-[#101828] mb-4 md:mb-6">
+          {/* Left column */}
+          <div className="lg:col-span-4 lg:sticky lg:top-28">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-[#1E40AF]/10 border border-[#1E40AF]/20 rounded-full mb-4 sm:mb-6"
+            >
+              <span className="text-[#1E40AF] text-[10px] sm:text-xs font-semibold uppercase tracking-widest">Our Mission</span>
+            </motion.div>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="heading-lg mb-4 sm:mb-6"
+            >
               How we drive <br className="hidden md:block" /> change daily.
-            </h3>
-            <p className="text-[#101828]/60 text-base md:text-lg leading-relaxed max-w-xl">
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-[#64748B] text-sm sm:text-base md:text-lg leading-relaxed max-w-lg"
+            >
               Our mission is the roadmap to our vision. We focus on five key pillars that ensure no one is left behind in the journey of global growth.
-            </p>
+            </motion.p>
           </div>
 
-          {/* Right Column: Mission Cards - Responsive Grid Columns */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-            {missionItems.map((item, index) => (
-              <div 
-                key={index} 
-                className={`group p-6 md:p-8 bg-white border border-gray-100 rounded-2xl md:rounded-[24px] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ${
-                  index === 4 ? 'sm:col-span-2' : 'col-span-1'
+          {/* Right column — alternating layout */}
+          <div className="lg:col-span-8 space-y-4 sm:space-y-5">
+            {items.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`group p-5 sm:p-6 md:p-7 bg-white border border-[#E2E8F0] rounded-xl hover:border-[#1E40AF]/20 hover:shadow-lg transition-all duration-300 flex items-start gap-4 sm:gap-5 ${
+                  i % 2 === 0 ? "md:mr-8 lg:mr-16" : "md:ml-8 lg:ml-16"
                 }`}
               >
-                <div className="w-12 h-12 bg-[#EFE1D1]/50 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#FF7373]/10 transition-colors shrink-0">
+                <div className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-[#F8FAFC] rounded-lg flex items-center justify-center text-[#B91C1C] group-hover:bg-[#1E40AF] group-hover:text-white transition-colors">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg md:text-xl font-bold text-[#101828] mb-2 md:mb-3 group-hover:text-[#FF7373] transition-colors">
+                  <h4 className="text-sm sm:text-base md:text-lg font-bold text-[#0F172A] mb-1.5 sm:mb-2 group-hover:text-[#1E40AF] transition-colors">
                     {item.title}
                   </h4>
-                  <p className="text-gray-500 text-sm md:text-base leading-relaxed font-medium">
+                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base leading-relaxed font-medium">
                     {item.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

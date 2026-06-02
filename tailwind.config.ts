@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        brandNavy: "#101828",   // Deep Navy (Headings)
-        brandCoral: "#FF7373",  // Accent (Buttons/Icons)
-        brandBeige: "#EFE1D1",  // Soft Background
-        brandWhite: "#FDFCFE",  // Main Background
-        uigray: {
-          25: "#FCFCFD",
-          500: "#667085",       // Subtext
-          900: "#101828",
-        }
+        brandNavy: "#0F172A",
+        brandBlue: "#1E40AF",
+        brandDeepBlue: "#1E3A8A",
+        brandRed: "#B91C1C",
+        brandAccentRed: "#DC2626",
+        brandLight: "#F8FAFC",
+        brandWhite: "#FFFFFF",
+        brandMuted: "#64748B",
+        brandBorder: "#E2E8F0",
       },
       fontFamily: {
         sans: ['"Inter"', 'sans-serif'],

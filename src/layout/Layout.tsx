@@ -8,12 +8,10 @@ interface Props {
 
 const MainLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[#FDFCFE] scroll-smooth font-sans selection:bg-[#FF7373] selection:text-white">
-      {/* The Header now contains its own spacer internally */}
+    <div className="min-h-screen bg-brandWhite scroll-smooth font-sans selection:bg-brandBlue selection:text-white">
+      {/* <AnnouncementBar /> */}
       <Navbar />
-
       <main className="relative">{children}</main>
-
       <Footer />
     </div>
   );

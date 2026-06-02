@@ -1,16 +1,19 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative isolate min-h-[720px] overflow-hidden bg-white">
+    <section
+      id="home"
+      className="relative isolate min-h-[600px] sm:min-h-[680px] md:min-h-[780px] overflow-hidden bg-white"
+    >
+      {/* Video Background */}
       <div className="absolute inset-0 -z-20">
         <video
           className="h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
+          autoPlay muted loop playsInline
           aria-hidden="true"
         >
           <source
@@ -20,35 +23,64 @@ const Hero: React.FC = () => {
         </video>
       </div>
 
-      {/* <div className="absolute inset-0 -z-10 bg-white/72" /> */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white via-white/20 to-[#FFF0F0]/22" />
-      {/* <div className="absolute inset-0 -z-10 bg-gradient-to-t from-white via-transparent" /> */}
-      {/* <div className="absolute left-0 top-0 -z-10 h-full w-[46%] bg-[#FF7373]/10 [clip-path:polygon(0_0,72%_0,100%_100%,0_100%)]" /> */}
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white via-white/30 to-transparent" />
 
-      <div className="mx-auto flex min-h-[720px] w-full max-w-7xl items-center px-6 pb-20 pt-36 md:pt-40">
-        <div className="max-w-[840px]">
-          <p className="mb-7 text-sm font-black uppercase tracking-[0.18em] text-[#FF7373] md:text-base">
-            Step2Impact Global Network
-          </p>
+      <div className="mx-auto flex min-h-[600px] sm:min-h-[680px] md:min-h-[780px] w-full max-w-7xl items-center px-4 sm:px-6 pb-16 md:pb-20">
+        <div className="w-full">
+          <div className="max-w-[780px]">
+            {/* Section tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-3 mb-5 sm:mb-7"
+            >
+              <span className="h-[3px] w-8 sm:w-10 bg-[#B91C1C]" />
+              <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-[#1E40AF]">
+                Step2Impact Global Network
+              </span>
+            </motion.div>
 
-          <h1 className="mb-7 text-[54px] font-black leading-[1.04] tracking-normal text-[#101828] sm:text-[76px] lg:text-[96px]">
-            Turning Intent <br className="hidden sm:block" />
-            into <span className="text-[#FF7373]">Impact.</span>
-          </h1>
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mb-5 sm:mb-7 text-[38px] sm:text-[60px] md:text-[80px] lg:text-[96px] font-black leading-[1.04] tracking-tight text-[#0F172A]"
+            >
+              Turning Intent <br className="hidden sm:block" />
+              into <span className="text-[#B91C1C]">Impact.</span>
+            </motion.h1>
 
-          <p className="mb-9 max-w-[720px] text-xl font-semibold leading-relaxed text-[#101828]/75 md:text-2xl">
-            Empowering People. Strengthening Businesses. Uplifting Communities.
-          </p>
+            {/* Subheadline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-8 sm:mb-10 max-w-[640px] text-base sm:text-lg md:text-xl font-medium leading-relaxed text-[#64748B]"
+            >
+              Empowering People. Strengthening Businesses. Uplifting Communities.
+            </motion.p>
 
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <button className="inline-flex h-14 items-center justify-center gap-3 border border-[#FF7373] bg-[#FF7373] px-8 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_16px_36px_rgba(255,115,115,0.28)] transition-colors hover:border-[#101828] hover:bg-[#101828]">
-              Partner With Us
-              <ArrowRight size={18} strokeWidth={2.5} />
-            </button>
-            <button className="inline-flex h-14 items-center justify-center border border-[#101828]/20 bg-white/85 px-8 text-sm font-black uppercase tracking-[0.16em] text-[#101828] shadow-[0_16px_36px_rgba(16,24,40,0.08)] backdrop-blur-sm transition-colors hover:border-[#FF7373] hover:text-[#FF7373]">
-              Join The Network
-            </button>
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col gap-3 sm:flex-row"
+            >
+              <button className="inline-flex h-12 sm:h-14 items-center justify-center gap-2.5 bg-[#1E40AF] px-6 sm:px-8 text-xs sm:text-sm font-semibold uppercase tracking-[0.12em] text-white rounded-lg hover:bg-[#1E3A8A] transition-all shadow-xl shadow-[#1E40AF]/25 active:scale-[0.97]">
+                Partner With Us
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </button>
+              <button className="inline-flex h-12 sm:h-14 items-center justify-center gap-2.5 border border-[#E2E8F0] bg-white/90 px-6 sm:px-8 text-xs sm:text-sm font-semibold uppercase tracking-[0.12em] text-[#0F172A] rounded-lg hover:border-[#1E40AF] hover:text-[#1E40AF] transition-all shadow-sm active:scale-[0.97]">
+                Join The Network
+              </button>
+            </motion.div>
           </div>
+
+        
         </div>
       </div>
     </section>

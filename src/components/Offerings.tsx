@@ -1,14 +1,8 @@
-import React from 'react';
-import { 
-  TrendingUp, 
-  HeartPulse, 
-  Lightbulb, 
-  GraduationCap, 
-  Coins, 
-  Globe2, 
-  Plus, 
-  ArrowUpRight
-} from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  TrendingUp, HeartPulse, Lightbulb, GraduationCap, Coins, Globe2, ArrowUpRight,
+} from "lucide-react";
 
 const Offerings: React.FC = () => {
   const offerings = [
@@ -16,118 +10,126 @@ const Offerings: React.FC = () => {
       title: "Impact Consulting",
       subtitle: "Strategic Growth",
       desc: "Creating market opportunities and designing sustainable impact models for global growth.",
-      icon: <TrendingUp size={24} />,
-      points: ["Strategy Consulting", "Market Expansion", "Strategic Partnerships", "Growth Models"]
+      icon: <TrendingUp size={22} />,
+      points: ["Strategy Consulting", "Market Expansion", "Strategic Partnerships", "Growth Models"],
     },
     {
       title: "Life Skills",
       subtitle: "Wellness & Resilience",
       desc: "Empowering individuals with essential life skills to enhance emotional well-being and growth.",
-      icon: <HeartPulse size={24} />,
-      points: ["Emotional Intelligence", "AI & Financial Literacy", "Mental Wellness", "Work-Life Balance"]
+      icon: <HeartPulse size={22} />,
+      points: ["Emotional Intelligence", "AI & Financial Literacy", "Mental Wellness", "Work-Life Balance"],
     },
     {
       title: "Entrepreneurship",
       subtitle: "Development Initiatives",
       desc: "Mindset and strategies required to build sustainable and scalable business ventures.",
-      icon: <Lightbulb size={24} />,
-      points: ["Startup Mentorship", "Bootcamps", "Market Access", "Scaling Strategies"]
+      icon: <Lightbulb size={22} />,
+      points: ["Startup Mentorship", "Bootcamps", "Market Access", "Scaling Strategies"],
     },
     {
       title: "Mentorship Council",
       subtitle: "Youth Development",
       desc: "Guiding youth toward leadership, employability, and executive-level success.",
-      icon: <GraduationCap size={24} />,
-      points: ["Leadership Mentoring", "Career Guidance", "Expert Networking", "Founder Coaching"]
+      icon: <GraduationCap size={22} />,
+      points: ["Leadership Mentoring", "Career Guidance", "Expert Networking", "Founder Coaching"],
     },
     {
       title: "Empowering Women",
       subtitle: "Financial Freedom",
       desc: "Creating inclusive opportunities through leadership and business enablement initiatives.",
-      icon: <Coins size={24} />,
-      points: ["Women Entrepreneurship", "Money Management", "Growth Circles", "Leadership Workshops"]
+      icon: <Coins size={22} />,
+      points: ["Women Entrepreneurship", "Money Management", "Growth Circles", "Leadership Workshops"],
     },
     {
       title: "Global Scaling",
       subtitle: "Strategic Alliances",
       desc: "Helping businesses expand through collaboration and investor access.",
-      icon: <Globe2 size={24} />,
-      points: ["Global Market Access", "Investor Networking", "Cross-Border Alliances", "Growth Acceleration"]
-    }
+      icon: <Globe2 size={22} />,
+      points: ["Global Market Access", "Investor Networking", "Cross-Border Alliances", "Growth Acceleration"],
+    },
   ];
 
   return (
-    <section id="offerings" className="bg-[#FDFCFE] py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section id="offerings" className="relative bg-white section-padding overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* SECTION HEADER */}
-        <div className="mb-12 md:mb-20 text-center md:text-left">
-          <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
-            <div className="h-[2px] w-8 md:w-12 bg-[#FF7373]"></div>
-            <span className="text-[#101828]/50 text-[10px] md:text-xs font-black uppercase tracking-[0.3em]">What We Provide</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#101828] tracking-tighter">
-            Core <span className="text-[#FF7373]">Offerings.</span>
-          </h2>
+        {/* Section header */}
+        <div className="mb-10 sm:mb-14 md:mb-20 text-center md:text-left">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center md:justify-start gap-3 mb-4 sm:mb-6"
+          >
+            <span className="h-[3px] w-8 sm:w-10 bg-[#B91C1C]" />
+            <span className="section-tag">What We Provide</span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="heading-xl"
+          >
+            Core <span className="text-[#B91C1C]">Offerings.</span>
+          </motion.h2>
         </div>
 
-        {/* INTERACTIVE GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Professional grid with alternating card styles */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {offerings.map((item, index) => (
-            <div 
+            <motion.div
               key={index}
-              className="group relative min-h-[360px] md:h-[400px] bg-white border border-[#EFE1D1] rounded-[28px] md:rounded-[32px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-[#101828]/5 cursor-pointer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group relative min-h-[320px] sm:min-h-[360px] bg-white border border-[#E2E8F0] rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-[#1E40AF]/5 hover:border-[#1E40AF]/20 cursor-pointer"
             >
-              {/* TOP: Static Content */}
-              <div className="p-6 md:p-8 h-full flex flex-col">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE1D1] text-[#101828] rounded-xl md:rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#101828] group-hover:text-white transition-all duration-500 group-hover:rotate-6">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
+              {/* Content */}
+              <div className="p-5 sm:p-6 md:p-7 h-full flex flex-col">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#F8FAFC] text-[#0F172A] rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-[#1E40AF] group-hover:text-white transition-all duration-500">
+                  {React.cloneElement(item.icon as React.ReactElement, { size: 22 })}
                 </div>
-                
-                <p className="text-xl md:text-2xl font-black text-[#FF7373] mb-2">
+
+                <p className="text-[#B91C1C] font-black text-lg sm:text-xl mb-1 sm:mb-1.5">
                   {item.subtitle}
                 </p>
-                <h3 className="text-lg md:text-xl font-black text-[#101828] leading-tight mb-4 group-hover:text-[#FF7373] transition-colors">
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-[#0F172A] leading-tight mb-3 sm:mb-4 group-hover:text-[#1E40AF] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-base md:text-lg font-bold text-gray-400 leading-relaxed">
+                <p className="text-sm sm:text-base font-medium text-[#64748B]/60 leading-relaxed">
                   {item.desc}
                 </p>
 
-                {/* VISUAL DECOR: Plus sign at corner */}
-                <div className="mt-auto flex justify-end">
-                   <div className="w-8 h-8 rounded-full border border-[#EFE1D1] flex items-center justify-center group-hover:bg-[#FF7373] group-hover:border-[#FF7373] transition-all">
-                      <Plus size={16} className="text-[#101828] group-hover:text-white group-hover:rotate-90 transition-all duration-500" />
-                   </div>
+                {/* Always-visible arrow indicator */}
+                <div className="mt-auto flex justify-end pt-3 sm:pt-4">
+                  <span className="text-[#64748B]/30 group-hover:text-[#1E40AF] transition-colors">
+                    <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </span>
                 </div>
               </div>
 
-              {/* SLIDE-UP DETAIL OVERLAY (Works on Hover and Focus) */}
-              <div className="absolute inset-0 bg-[#101828] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out p-6 md:p-8 flex flex-col justify-center">
-                <p className="text-[#FF7373] font-black uppercase tracking-widest text-[10px] md:text-xs mb-6">Key Focus Areas</p>
-                <div className="space-y-3 md:space-y-4">
+              {/* Hover overlay — key focus areas */}
+              <div className="absolute inset-0 bg-[#0F172A] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out p-5 sm:p-6 md:p-7 flex flex-col justify-center">
+                <p className="text-[#B91C1C] font-semibold uppercase tracking-widest text-[10px] sm:text-xs mb-4 sm:mb-5 md:mb-6">
+                  Key Focus Areas
+                </p>
+                <div className="space-y-2.5 sm:space-y-3">
                   {item.points.map((point, i) => (
-                    <div 
-                      key={i} 
-                      className="flex items-center gap-3 md:gap-4 text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity delay-200 duration-500"
+                    <div
+                      key={i}
+                      className="flex items-center gap-2.5 sm:gap-3 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity delay-200 duration-500"
                     >
-                      <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-[#FF7373]" />
-                      <span className="text-sm md:text-base leading-tight">{point}</span>
+                      <span className="w-1.5 h-1.5 shrink-0 rounded-full bg-[#B91C1C]" />
+                      <span className="text-xs sm:text-sm md:text-base leading-tight">{point}</span>
                     </div>
                   ))}
                 </div>
-                
-                <div className="mt-8 md:mt-10 pt-4 border-t border-white/10">
-                  <button className="text-white font-black uppercase tracking-widest text-[10px] flex items-center gap-2 hover:text-[#FF7373] transition-colors group/btn">
-                    View full details 
-                    <ArrowUpRight size={14} className="group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                  </button>
-                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -1,61 +1,55 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #fdfcfe; /* brandWhite */
-  color: #101828; /* brandNavy */
+  background-color: #ffffff;
+  color: #0f172a;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: "Inter", sans-serif;
 }
 
-/* Custom selection color to match brand */
 ::selection {
-  background-color: #ff7373;
+  background-color: #1e40af;
   color: white;
-}
-
-@keyframes wave-move {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-50px) translateY(10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-.animate-wave-slow {
-  animation: wave-move 15s ease-in-out infinite;
-}
-.animate-wave-fast {
-  animation: wave-move 10s ease-in-out infinite reverse;
-}
-.animate-float {
-  animation: float 5s ease-in-out infinite;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-@keyframes dash {
-  to {
-    stroke-dashoffset: -1000;
-  }
+/* Announcement bar marquee */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
-.animate-dash {
-  animation: dash 60s linear infinite;
+.animate-marquee {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+/* Stats counter animation */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+  .section-tag {
+    @apply text-brandMuted text-[10px] md:text-xs font-semibold uppercase tracking-[0.22em];
+  }
+  .heading-xl {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-brandNavy leading-[1.08] tracking-tight;
+  }
+  .heading-lg {
+    @apply text-3xl sm:text-4xl md:text-5xl font-black text-brandNavy leading-[1.1] tracking-tight;
+  }
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl;
+  }
 }

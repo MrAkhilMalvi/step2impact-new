@@ -11,30 +11,21 @@ import ContactUs from "../components/ContactUs";
 const Home: React.FC = () => {
   return (
     <>
-      <section id="home">
-        <Hero />
-      </section>
-
+      <Hero />
       <section id="about" className="scroll-mt-28">
         <AboutUs />
       </section>
-
       <section id="impact" className="scroll-mt-28">
         <ImpactPhilosophy />
       </section>
-
       <VisionMission />
-
       <section id="offerings" className="scroll-mt-28">
         <Offerings />
       </section>
-
       <section id="leadership" className="scroll-mt-28">
         <Founders />
       </section>
-
       <CTA />
-
       <section id="contact" className="scroll-mt-28">
         <ContactUs />
       </section>
