@@ -15,7 +15,7 @@ export default {
         brandBorder: "#E2E8F0",
       },
       fontFamily: {
-        sans: ['"Inter"', 'sans-serif'],
+        sans: ["Plus Jakarta Sans", "sans-serif"],
       },
     },
   },
