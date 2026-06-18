@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, ArrowRight, Target, Zap, Globe, Users, HeartHandshake, Sparkles } from "lucide-react";
+import { CheckCircle2, Target, Zap, Globe, Users, HeartHandshake, Sparkles } from "lucide-react";
 
 const ImpactPhilosophy: React.FC = () => {
   const reasons = [

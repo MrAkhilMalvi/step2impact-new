@@ -1,67 +1,99 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, UserPlus, Handshake, MessageSquare } from "lucide-react";
 
 const CTA: React.FC = () => {
   return (
-    <section className="relative section-padding bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Premium CTA card */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+    <section className="relative w-full bg-white py-32 md:py-40 overflow-hidden flex items-center justify-center min-h-[550px]">
+      
+      {/* LEFT CRISP ACCENT RING (Centered vertically on the left edge with sharp edges) */}
+      <div className="absolute -left-[340px] md:-left-[420px] bottom-[-260px] w-[700px] md:w-[850px] h-[700px] md:h-[650px] pointer-events-none select-none z-0">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="pinkWatercolor" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#D946EF" />
+              <stop offset="60%" stopColor="#EC4899" />
+              <stop offset="100%" stopColor="#F43F5E" />
+            </linearGradient>
+          </defs>
+          <circle 
+            cx="250" 
+            cy="250" 
+            r="180" 
+            stroke="url(#pinkWatercolor)" 
+            strokeWidth="110" 
+            fill="none" 
+          />
+        </svg>
+      </div>
+
+      {/* RIGHT CRISP ACCENT RING (Centered vertically on the right edge with sharp edges) */}
+      <div className="absolute -right-[340px] md:-right-[420px] bottom-[-260px] w-[700px] md:w-[850px] h-[700px] md:h-[650px] pointer-events-none select-none z-0">
+        <svg className="w-full h-full" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="orangeWatercolor" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#EA580C" />
+              <stop offset="50%" stopColor="#F43F5E" />
+              <stop offset="100%" stopColor="#E11D48" />
+            </linearGradient>
+          </defs>
+          <circle 
+            cx="250" 
+            cy="250" 
+            r="180" 
+            stroke="url(#orangeWatercolor)" 
+            strokeWidth="110" 
+            fill="none" 
+          />
+        </svg>
+      </div>
+
+      {/* Center Content Container */}
+      <div className="max-w-5xl mx-auto px-6 text-center relative z-10 flex flex-col items-center">
+        
+        {/* Main Heading */}
+        <motion.h2 
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative bg-[#0F172A] rounded-2xl sm:rounded-3xl md:rounded-[40px] px-5 sm:px-8 md:px-12 lg:px-16 py-10 sm:py-12 md:py-16 lg:py-20 overflow-hidden shadow-2xl"
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F172A] tracking-tight leading-[1.15]"
         >
-          {/* Decorative glow */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/[0.03] to-transparent pointer-events-none" />
-          <div className="absolute -bottom-20 -left-20 w-40 sm:w-56 md:w-72 h-40 sm:h-56 md:h-72 bg-[#B91C1C]/12 rounded-full blur-[80px] pointer-events-none" />
+          Make global impact your <br />
+          competitive edge
+        </motion.h2>
+
+        {/* Subtitle */}
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-sm sm:text-base md:text-lg text-slate-500 font-normal leading-relaxed max-w-2xl mx-auto mt-6"
+        >
+          Whether you are an entrepreneur, organization, mentor, or changemaker — we are here to help you grow, scale, and create sustainable impact.
+        </motion.p>
+
+        {/* Button Container */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-10 flex flex-col items-center gap-4"
+        >
+          <a
+            href="#network"
+            className="relative overflow-hidden inline-flex items-center justify-center px-10 py-4 bg-[#0A0F1D] hover:bg-black text-white text-sm sm:text-base font-semibold rounded-lg shadow-md transition-all duration-150 active:scale-[0.98]"
+          >
+            <span>Become a Partner</span>
+            
+            {/* Crisp Bottom Border Gradient matching image */}
+            <div className="absolute bottom-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#EA580C] via-[#F43F5E] to-[#D946EF]" />
+          </a>
 
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 md:gap-12 items-center relative z-10">
-            {/* LEFT */}
-            <div className="lg:col-span-7 text-center lg:text-left">
-
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-[1.1] tracking-tight mb-4 sm:mb-6 md:mb-8">
-                Ready to Create <br className="hidden sm:block" />
-                <span className="text-[#DC2626]">Meaningful Impact?</span>
-              </h2>
-
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/40 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Whether you are an entrepreneur, organization, mentor, or changemaker \u2014 we are here to help you grow, scale, and create sustainable impact.
-              </p>
-            </div>
-
-            {/* RIGHT */}
-            <div className="lg:col-span-5 flex flex-col gap-2.5 sm:gap-3 md:gap-4">
-              <button className="group w-full flex items-center justify-between p-3 sm:p-4 md:p-5 lg:p-6 bg-[#1E40AF] text-white rounded-xl sm:rounded-2xl md:rounded-3xl hover:bg-white hover:text-[#0F172A] transition-all duration-300 shadow-lg active:scale-[0.98]">
-                <div className="flex items-center gap-2.5 sm:gap-3 md:gap-4 text-left">
-                  <div className="bg-white/15 p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl group-hover:bg-[#0F172A]/5 transition-colors">
-                    <Handshake size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                  </div>
-                  <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight">Become a Partner</span>
-                </div>
-                <ArrowRight className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
-              </button>
-
-              <button className="group w-full flex items-center justify-between p-3 sm:p-4 md:p-5 lg:p-6 bg-white/[0.04] border border-white/[0.08] text-white rounded-xl sm:rounded-2xl md:rounded-3xl hover:bg-white/10 transition-all duration-300 active:scale-[0.98]">
-                <div className="flex items-center gap-2.5 sm:gap-3 md:gap-4 text-left">
-                  <div className="bg-white/10 p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl">
-                    <UserPlus size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                  </div>
-                  <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight">Join Our Network</span>
-                </div>
-                <ArrowRight className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform opacity-0 group-hover:opacity-100" />
-              </button>
-
-              <button className="group w-full flex items-center justify-center gap-1.5 sm:gap-2 p-3 sm:p-4 text-white/40 hover:text-[#B91C1C] font-semibold uppercase tracking-wider text-[9px] sm:text-[10px] md:text-xs transition-all">
-                <MessageSquare size={14} className="sm:w-4 sm:h-4" />
-                Contact Us Today
-              </button>
-            </div>
-          </div>
         </motion.div>
+
       </div>
     </section>
   );

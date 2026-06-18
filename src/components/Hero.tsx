@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Award,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion as motionFramer } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SLIDES = [
@@ -26,7 +21,6 @@ const SLIDES = [
   },
 ];
 
-// Animation configurations for horizontal swipe transition
 const slideVariants = {
   enter: (direction: number) => ({
     x: direction > 0 ? "100%" : "-100%",
@@ -51,7 +45,6 @@ const slideVariants = {
 } as const;
 
 const Hero: React.FC = () => {
-  // Using an array state to track both the current index and transition direction
   const [[page, direction], setPage] = useState([0, 0]);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -64,7 +57,6 @@ const Hero: React.FC = () => {
     [page],
   );
 
-  // Automatic slide rotation
   useEffect(() => {
     if (isHovered) return;
     const interval = setInterval(() => {
@@ -80,6 +72,60 @@ const Hero: React.FC = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* 1. BACKGROUND DECORATIVE WEBPS */}
+      {/* heroicons1.webp - Top Left Corner Graphic */}
+      <img
+        src="/images/heroicons1.webp"
+        alt="Top Left Accent"
+        className="absolute top-0 left-0 w-44 sm:w-60 h-auto object-contain pointer-events-none z-20 opacity-40 select-none"
+      />
+
+      <motionFramer.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="absolute top-2/3 left-6 sm:left-16 md:left-24 -translate-y-1/2 w-28 sm:w-36 md:w-28 h-auto object-contain pointer-events-none z-20 opacity-100 select-none"
+        animate={{
+          y: [0, -12, 0],
+        }}
+        transition={{
+          y: {
+            repeat: Infinity,
+            duration: 4,
+            ease: "easeInOut",
+          },
+          opacity: { duration: 0.8 },
+        }}
+      >
+        <img src="/images/heroicons2.webp" alt="Left Center Ring Accent" />
+      </motionFramer.div>
+      <motionFramer.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="absolute top-[40%] right-8 sm:right-20 md:right-32 -translate-y-1/2 w-48 sm:w-56 md:w-20 h-auto object-contain pointer-events-none z-20 opacity-100 select-none"
+        animate={{
+          y: [0, -12, 0],
+        }}
+        transition={{
+          y: {
+            repeat: Infinity,
+            duration: 4,
+            ease: "easeInOut",
+          },
+          opacity: { duration: 0.8 },
+        }}
+      >
+        {/* heroicons3.webp - Right Center Big Circular Outline */}
+        <img src="/images/heroicons3.webp" alt="Right Center Ring Accent" />
+      </motionFramer.div>
+      {/* heroicons4.webp - Right Bottom Grid Overlay */}
+      <img
+        src="/images/heroicons4.webp"
+        alt="Right Bottom Grid Accent"
+        className="absolute bottom-0 right-0 w-60 sm:w-80 md:w-64 h-auto object-contain pointer-events-none z-20 opacity-100 select-none"
+      />
+
       {/* Background Slides with Directional Scrolling */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -93,7 +139,7 @@ const Hero: React.FC = () => {
             className="absolute inset-0 w-full h-full"
           >
             {/* Dark tinted layer to keep copy readable */}
-            <div className="absolute inset-0 bg-slate-950/45 z-10" />
+            <div className="absolute inset-0 bg-slate-950/50 z-10" />
             <img
               src={SLIDES[activeIndex].image}
               alt="Corporate Background"
@@ -103,25 +149,17 @@ const Hero: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {/* Spotlight Central Circular Overlay */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-        <div className="w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-slate-950/40 backdrop-blur-[1.5px] border border-white/5" />
-      </div>
-
       {/* Center Layout Container */}
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Top Badge */}
-        <motion.div
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center justify-center">
+        {/* Subtitle / Welcome label */}
+        <motion.p
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 mb-6"
+          className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-white/90 mb-4"
         >
-          <Award size={14} className="text-orange-400" />
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-100">
-            Step2Impact Global Network
-          </span>
-        </motion.div>
+          WELCOME! START GROWING YOUR IMPACT TODAY
+        </motion.p>
 
         {/* Animated Slide Content (Title & Subtitle reset on transition) */}
         <AnimatePresence mode="wait">
@@ -134,19 +172,19 @@ const Hero: React.FC = () => {
             className="flex flex-col items-center"
           >
             {/* Headline */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight max-w-3xl leading-[1.1] mb-6">
+            <h1 className="text-4.5xl sm:text-6xl md:text-7xl font-bold tracking-tight max-w-4xl leading-[1.12] mb-6">
               {SLIDES[activeIndex].title}
             </h1>
 
             {/* Subheadline */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-200 font-medium max-w-2xl leading-relaxed mb-10">
-              Empowering People. Strengthening Businesses. Uplifting
-              Communities.
+            <p className="text-sm sm:text-base md:text-lg text-white/80 font-medium max-w-2xl leading-relaxed mb-10">
+              Step2Impact Global Network is a purpose-driven ecosystem operating
+              at the intersection of leadership, structured growth, and systemic
+              impact.
             </p>
           </motion.div>
         </AnimatePresence>
 
-        {/* Gradient Action Button */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -162,36 +200,20 @@ const Hero: React.FC = () => {
             </span>
           </a>
         </motion.div>
-
-        {/* Trusted Floating Badge */}
-        <div className="absolute top-[-50px] right-0 md:right-10 lg:right-[-40px] hidden sm:block">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="w-20 h-20 bg-indigo-600/90 backdrop-blur-md rounded-full border border-white/20 flex flex-col items-center justify-center shadow-lg text-center p-2"
-          >
-            <ShieldCheck size={20} className="text-white mb-1" />
-            <span className="text-[9px] font-bold tracking-widest text-white leading-none uppercase">
-              Trusted <br /> Impact
-            </span>
-          </motion.div>
-        </div>
       </div>
 
-      {/* Slider Left Arrow */}
+      {/* Slider Navigation: Standard clean white circles with dark icons */}
       <button
         onClick={() => paginate(-1)}
-        className="absolute left-4 sm:left-8 z-30 w-12 h-12 rounded-full border border-white/25 flex items-center justify-center bg-black/15 hover:bg-white/20 text-white transition-all duration-200"
+        className="absolute left-4 sm:left-8 z-30 w-12 h-12 rounded-full flex items-center justify-center bg-white text-gray-800 shadow-lg hover:bg-gray-100 transition-all duration-200"
         aria-label="Previous slide"
       >
         <ChevronLeft size={20} />
       </button>
 
-      {/* Slider Right Arrow */}
       <button
         onClick={() => paginate(1)}
-        className="absolute right-4 sm:right-8 z-30 w-12 h-12 rounded-full border border-white/25 flex items-center justify-center bg-black/15 hover:bg-white/20 text-white transition-all duration-200"
+        className="absolute right-4 sm:right-8 z-30 w-12 h-12 rounded-full flex items-center justify-center bg-white text-gray-800 shadow-lg hover:bg-gray-100 transition-all duration-200"
         aria-label="Next slide"
       >
         <ChevronRight size={20} />
